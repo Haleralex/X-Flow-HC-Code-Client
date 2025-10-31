@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06126ec34fa5916488ee0fb57c1c840f, type: 3}
+  m_Name: RandomBundle_3
+  m_EditorClassIdentifier: Shop::XFlow.Shop.Bundle
+  bundleName: RandomBundle_3
+  costs:
+  - {fileID: 11400000, guid: 57c3351924344574889e0ae6e2bcd77d, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 949561604efcbc14eb1638fa09ff9ad3, type: 2}
