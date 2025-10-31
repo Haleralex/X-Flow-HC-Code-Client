@@ -1,8 +1,6 @@
 using UnityEngine;
 using TMPro;
 using XFlow.Core;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using System;
 
 namespace XFlow.Health
@@ -10,35 +8,24 @@ namespace XFlow.Health
     public class HealthView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI healthText;
-        [SerializeField] private LocalizedString healthFormat;
+        [SerializeField] private string healthFormat = "Health: {0}/{1}";
 
-        private void Start()
+        private void OnEnable()
         {
             PlayerData.Instance.Subscribe<HealthResource>(UpdateView);
             UpdateView();
-
-            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             PlayerData.Instance.Unsubscribe<HealthResource>(UpdateView);
-            if (LocalizationSettings.Instance != null)
-                LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
         }
 
         private void UpdateView()
         {
             var health = HealthController.Instance.GetCurrentHealth();
             var maxHealth = HealthController.Instance.GetMaxHealth();
-            healthFormat.GetLocalizedStringAsync(health, maxHealth).Completed += h =>
-            {
-                if (healthText != null) healthText.text = h.Result;
-            };
-        }
-        private void OnLocaleChanged(Locale _)
-        {
-            UpdateView();
+            if (healthText != null) healthText.text = string.Format(healthFormat, health, maxHealth);
         }
 
         public void OnCheatButtonClick()

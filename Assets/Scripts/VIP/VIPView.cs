@@ -1,41 +1,29 @@
 using UnityEngine;
 using TMPro;
 using XFlow.Core;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 
 namespace XFlow.VIP
 {
     public class VIPView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI vipText;
-        [SerializeField] private LocalizedString vipFormat;
+        [SerializeField] private string vipFormat = "VIP: {0}s";
 
-        private void Start()
+        private void OnEnable()
         {
             PlayerData.Instance.Subscribe<VIPResource>(UpdateView);
             UpdateView();
-            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             PlayerData.Instance.Unsubscribe<VIPResource>(UpdateView);
-            if (LocalizationSettings.Instance != null)
-                LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
-        }
-        private void OnLocaleChanged(Locale _)
-        {
-            UpdateView();
         }
 
         private void UpdateView()
         {
             var seconds = (int)VIPController.Instance.GetVIPDuration().TotalSeconds;
-            vipFormat.GetLocalizedStringAsync(seconds).Completed += h =>
-            {
-                if (vipText != null) vipText.text = h.Result;
-            };
+            if (vipText != null) vipText.text = string.Format(vipFormat, seconds);
         }
 
         public void OnCheatButtonClick()

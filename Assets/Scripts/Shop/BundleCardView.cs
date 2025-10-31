@@ -2,8 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using XFlow.Core;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 
 namespace XFlow.Shop
 {
@@ -14,8 +12,8 @@ namespace XFlow.Shop
         [SerializeField] private Button infoButton;
         [SerializeField] private TextMeshProUGUI buyButtonText;
 
-        [SerializeField] private LocalizedString buyText;
-        [SerializeField] private LocalizedString processingText;
+        [SerializeField] private string buyText = "Buy";
+        [SerializeField] private string processingText = "Processing...";
 
         private Bundle _bundle;
         private bool _isPurchasing;
@@ -26,11 +24,6 @@ namespace XFlow.Shop
                 buyButton.onClick.AddListener(OnBuyButtonClick);
             if (infoButton != null)
                 infoButton.onClick.AddListener(OnInfoButtonClick);
-
-            ShopController.Instance.OnBundleStateChanged += UpdateButtonState;
-            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
-
-            UpdateButtonState();
         }
 
         private void OnDestroy()
@@ -39,15 +32,17 @@ namespace XFlow.Shop
                 buyButton.onClick.RemoveListener(OnBuyButtonClick);
             if (infoButton != null)
                 infoButton.onClick.RemoveListener(OnInfoButtonClick);
-
-            ShopController.Instance.OnBundleStateChanged -= UpdateButtonState;
-            if (LocalizationSettings.Instance != null)
-                LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
         }
 
-        private void OnLocaleChanged(Locale _)
+        private void OnEnable()
         {
+            ShopController.Instance.OnBundleStateChanged += UpdateButtonState;
             UpdateButtonState();
+        }
+
+        private void OnDisable()
+        {
+            ShopController.Instance.OnBundleStateChanged -= UpdateButtonState;
         }
 
         public void Initialize(Bundle bundle, bool showInfoButton = true)
@@ -61,7 +56,7 @@ namespace XFlow.Shop
             UpdateButtonState();
         }
 
-        private void UpdateButtonState()
+        public void UpdateButtonState()
         {
             if (buyButton == null || _bundle == null) return;
 
@@ -70,12 +65,7 @@ namespace XFlow.Shop
 
             if (buyButtonText != null)
             {
-                var ls = _isPurchasing ? processingText : buyText;
-                ls.GetLocalizedStringAsync().Completed += handle =>
-                {
-                    if (buyButtonText != null)
-                        buyButtonText.text = handle.Result;
-                };
+                buyButtonText.text = _isPurchasing ? processingText : buyText;
             }
         }
 

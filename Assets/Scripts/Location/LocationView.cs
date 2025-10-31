@@ -1,42 +1,29 @@
 using UnityEngine;
 using TMPro;
 using XFlow.Core;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 
 namespace XFlow.Location
 {
     public class LocationView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI locationText;
-        [SerializeField] private LocalizedString locationFormat; 
+        [SerializeField] private string locationFormat = "Location: {0}"; 
 
-        private void Start()
+        private void OnEnable()
         {
             PlayerData.Instance.Subscribe<LocationResource>(UpdateView);
             UpdateView();
-            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             PlayerData.Instance.Unsubscribe<LocationResource>(UpdateView);
-            if (LocalizationSettings.Instance != null)
-                LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
-        }
-
-        private void OnLocaleChanged(Locale _)
-        {
-            UpdateView();
         }
 
         private void UpdateView()
         {
             var location = LocationController.Instance.GetCurrentLocation();
-            locationFormat.GetLocalizedStringAsync(location).Completed += h =>
-            {
-                if (locationText != null) locationText.text = h.Result;
-            };
+            if (locationText != null) locationText.text = string.Format(locationFormat, location);
         }
 
         public void OnCheatButtonClick()

@@ -29,10 +29,18 @@ namespace XFlow.Shop
             if (bundle == null || !bundle.CanPurchase())
             {
                 onComplete?.Invoke(false);
+                Debug.Log("Bundle purchase failed: insufficient resources.");
                 yield break;
             }
 
-            yield return new WaitForSeconds(NETWORK_DELAY_SECONDS);
+            yield return new WaitForSecondsRealtime(NETWORK_DELAY_SECONDS);
+
+            if (!bundle.CanPurchase())
+            {
+                onComplete?.Invoke(false);
+                Debug.Log("Bundle purchase failed: insufficient resources.");
+                yield break;
+            }
 
             bundle.ApplyCosts();
             bundle.ApplyRewards();
@@ -40,6 +48,7 @@ namespace XFlow.Shop
             OnBundleStateChanged?.Invoke();
 
             onComplete?.Invoke(true);
+            Debug.Log("Bundle purchased successfully.");
         }
 
         public bool CanPurchaseBundle(Bundle bundle)

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1193519055535741865}
   - component: {fileID: 4855024218141498111}
-  - component: {fileID: 4315986428447105356}
   - component: {fileID: 7299975682224664192}
   m_Layer: 5
   m_Name: Scroll View
@@ -48,36 +47,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861790185260908521}
   m_CullTransparentMesh: 1
---- !u!114 &4315986428447105356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861790185260908521}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &7299975682224664192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,11 +253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Shop::XFlow.Shop.ShopView
   availableBundles:
-  - {fileID: 11400000, guid: 85d40fbf7b285b94eba360146ebd021b, type: 2}
-  - {fileID: 11400000, guid: 588220d1d8a3beb468300a63fa71ab28, type: 2}
-  - {fileID: 11400000, guid: b61743175b52add458168d6c2e42f919, type: 2}
-  - {fileID: 11400000, guid: ab3580df4ce7874468527271e76cec4e, type: 2}
-  - {fileID: 11400000, guid: 91b049ee50ba48a4fa3c04d174be824b, type: 2}
+  - {fileID: 11400000, guid: a3ea31c81f946b04a80b7cd29f69ab9d, type: 2}
+  - {fileID: 11400000, guid: a8ad17b51abf049409da7abfbd30daeb, type: 2}
+  - {fileID: 11400000, guid: 57b761a95ec8f554a810158dc2a525df, type: 2}
+  - {fileID: 11400000, guid: 07e3e1bfe97ba314791cb9c84b9edf87, type: 2}
+  - {fileID: 11400000, guid: b6b00f28cbb868b4b8523a1b607c0adc, type: 2}
   bundleCardPrefab: {fileID: 8087592829370407900, guid: 7512b79ebd6c73548bb59ddc61eba61c, type: 3}
   bundleContainer: {fileID: 1388872361481502245}
 --- !u!1 &3440412099045518697
@@ -414,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 88.6542, y: 0}
+  m_AnchoredPosition: {x: 88.654236, y: 0}
   m_SizeDelta: {x: 177.3084, y: 676}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3589491814508018484
