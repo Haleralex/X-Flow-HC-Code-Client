@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace XFlow.Shop
@@ -22,38 +21,20 @@ namespace XFlow.Shop
 
         private ShopController() { }
 
-        public event Action OnBundleStateChanged;
-
-        public IEnumerator PurchaseBundle(Bundle bundle, Action<bool> onComplete)
+        public void PurchaseBundle(Bundle bundle, Action<bool> onComplete)
         {
             if (bundle == null || !bundle.CanPurchase())
             {
                 onComplete?.Invoke(false);
                 Debug.Log("Bundle purchase failed: insufficient resources.");
-                yield break;
+                return;
             }
 
-            yield return new WaitForSecondsRealtime(NETWORK_DELAY_SECONDS);
-
-            if (!bundle.CanPurchase())
-            {
-                onComplete?.Invoke(false);
-                Debug.Log("Bundle purchase failed: insufficient resources.");
-                yield break;
-            }
-
-            bundle.ApplyCosts();
-            bundle.ApplyRewards();
-
-            OnBundleStateChanged?.Invoke();
-
-            onComplete?.Invoke(true);
-            Debug.Log("Bundle purchased successfully.");
-        }
-
-        public bool CanPurchaseBundle(Bundle bundle)
-        {
-            return bundle != null && bundle.CanPurchase();
+            BundleDataHolder.Instance.StartPurchaseCoroutine(
+                bundle,
+                NETWORK_DELAY_SECONDS,
+                onComplete
+            );
         }
     }
 }

@@ -38,16 +38,16 @@ namespace XFlow.Health
 
         public void AddHealth(int amount)
         {
-            var resource = GetHealthResource();
-            resource.CurrentHealth = Mathf.Min(resource.CurrentHealth + amount, resource.MaxHealth);
-            PlayerData.Instance.NotifyChange<HealthResource>();
+            var data = PlayerData.Instance.Get<HealthResource>();
+            data.CurrentHealth = Mathf.Min(data.MaxHealth, data.CurrentHealth + amount);
+            PlayerData.Instance.Set(data);
         }
 
         public void RemoveHealth(int amount)
         {
             var resource = GetHealthResource();
             resource.CurrentHealth = Mathf.Max(resource.CurrentHealth - amount, 0);
-            PlayerData.Instance.NotifyChange<HealthResource>();
+            PlayerData.Instance.Set(resource);
         }
 
         public bool HasHealth(int amount)

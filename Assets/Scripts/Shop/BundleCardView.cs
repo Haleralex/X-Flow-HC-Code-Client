@@ -16,7 +16,14 @@ namespace XFlow.Shop
         [SerializeField] private string processingText = "Processing...";
 
         private Bundle _bundle;
-        private bool _isPurchasing;
+
+        private void Awake()
+        {
+            if (buyButton != null)
+                buyButton.interactable = false;
+            if (buyButtonText != null)
+                buyButtonText.text = buyText;
+        }
 
         private void Start()
         {
@@ -24,6 +31,8 @@ namespace XFlow.Shop
                 buyButton.onClick.AddListener(OnBuyButtonClick);
             if (infoButton != null)
                 infoButton.onClick.AddListener(OnInfoButtonClick);
+            
+            UpdateButtonState();
         }
 
         private void OnDestroy()
@@ -36,13 +45,14 @@ namespace XFlow.Shop
 
         private void OnEnable()
         {
-            ShopController.Instance.OnBundleStateChanged += UpdateButtonState;
-            UpdateButtonState();
+            PlayerData.Instance.OnAnyChanged += UpdateButtonState;
+            BundleDataHolder.Instance.OnPurchaseStateChanged += UpdateButtonState;
         }
 
         private void OnDisable()
         {
-            ShopController.Instance.OnBundleStateChanged -= UpdateButtonState;
+            PlayerData.Instance.OnAnyChanged -= UpdateButtonState;
+            BundleDataHolder.Instance.OnPurchaseStateChanged -= UpdateButtonState;
         }
 
         public void Initialize(Bundle bundle, bool showInfoButton = true)
@@ -60,28 +70,27 @@ namespace XFlow.Shop
         {
             if (buyButton == null || _bundle == null) return;
 
-            bool canPurchase = ShopController.Instance.CanPurchaseBundle(_bundle);
-            buyButton.interactable = canPurchase && !_isPurchasing;
+            bool isPurchasingThisBundle = BundleDataHolder.Instance.IsPurchasing(_bundle);
+            bool canPurchase = !isPurchasingThisBundle && _bundle.CanPurchase();
+            
+            buyButton.interactable = canPurchase;
 
             if (buyButtonText != null)
             {
-                buyButtonText.text = _isPurchasing ? processingText : buyText;
+                buyButtonText.text = isPurchasingThisBundle ? processingText : buyText;
             }
         }
 
         private void OnBuyButtonClick()
         {
-            if (_isPurchasing || _bundle == null) return;
+            if (BundleDataHolder.Instance.IsPurchasing(_bundle) || _bundle == null) return;
 
-            _isPurchasing = true;
-            UpdateButtonState();
-            StartCoroutine(ShopController.Instance.PurchaseBundle(_bundle, OnPurchaseComplete));
+            ShopController.Instance.PurchaseBundle(_bundle, OnPurchaseComplete);
         }
 
         private void OnPurchaseComplete(bool success)
         {
-            _isPurchasing = false;
-            UpdateButtonState();
+            Debug.Log($"Purchase complete: {success}");
         }
 
         private void OnInfoButtonClick()

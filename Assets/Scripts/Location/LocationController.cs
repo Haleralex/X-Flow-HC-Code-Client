@@ -34,7 +34,7 @@ namespace XFlow.Location
         {
             var resource = GetLocationResource();
             resource.CurrentLocation = newLocation;
-            PlayerData.Instance.NotifyChange<LocationResource>();
+            PlayerData.Instance.Set(resource);
         }
 
         public void CheatResetLocation()

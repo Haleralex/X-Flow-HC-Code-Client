@@ -154,6 +154,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2442336749709439646, guid: 834a562e0e163a945acd2277b6e5d176, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442336749709439646, guid: 834a562e0e163a945acd2277b6e5d176, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442336749709439646, guid: 834a562e0e163a945acd2277b6e5d176, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442336749709439646, guid: 834a562e0e163a945acd2277b6e5d176, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.77
+      objectReference: {fileID: 0}
     - target: {fileID: 4773962129809061829, guid: 834a562e0e163a945acd2277b6e5d176, type: 3}
       propertyPath: m_Type
       value: 0
@@ -184,6 +200,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4235319344183983535}
     m_Modifications:
+    - target: {fileID: 3066039515418240369, guid: 988547125511cb34d9e7da0588df40cb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066039515418240369, guid: 988547125511cb34d9e7da0588df40cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066039515418240369, guid: 988547125511cb34d9e7da0588df40cb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066039515418240369, guid: 988547125511cb34d9e7da0588df40cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.77
+      objectReference: {fileID: 0}
     - target: {fileID: 3195405942723698550, guid: 988547125511cb34d9e7da0588df40cb, type: 3}
       propertyPath: m_Type
       value: 0
@@ -294,6 +326,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4235319344183983535}
     m_Modifications:
+    - target: {fileID: 1669250616873151079, guid: 8b4abcfce98adbc4f9078719711d9544, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669250616873151079, guid: 8b4abcfce98adbc4f9078719711d9544, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669250616873151079, guid: 8b4abcfce98adbc4f9078719711d9544, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669250616873151079, guid: 8b4abcfce98adbc4f9078719711d9544, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.77
+      objectReference: {fileID: 0}
     - target: {fileID: 4215144732599058493, guid: 8b4abcfce98adbc4f9078719711d9544, type: 3}
       propertyPath: m_Type
       value: 0
@@ -487,6 +535,22 @@ PrefabInstance:
     - target: {fileID: 1093962251598934148, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
       propertyPath: m_Name
       value: HealthPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425525769839241291, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425525769839241291, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425525769839241291, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425525769839241291, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.77
       objectReference: {fileID: 0}
     - target: {fileID: 7096461148431045114, guid: 33fadc97c5bf34d45a2e9904df199f62, type: 3}
       propertyPath: m_Type

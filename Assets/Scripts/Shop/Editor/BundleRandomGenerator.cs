@@ -18,7 +18,6 @@ namespace XFlow.Shop.Editor
     private int seed = 0;
     private string outputFolder = "Assets/GeneratedBundles";
 
-    // Domain filters
     private bool costHealth = true;
     private bool costGold = true;
     private bool costLocation = false;
@@ -95,11 +94,9 @@ namespace XFlow.Shop.Editor
             else
                 UnityEngine.Random.InitState(Environment.TickCount);
 
-            // find all action assets
             var actionGuids = AssetDatabase.FindAssets("t:GameActionScriptableObject");
             var actions = new List<GameActionScriptableObject>();
 
-            // fallback: if type search didn't return, search all ScriptableObjects and filter
             if (actionGuids == null || actionGuids.Length == 0)
             {
                 var allGuids = AssetDatabase.FindAssets("t:ScriptableObject");
@@ -119,7 +116,6 @@ namespace XFlow.Shop.Editor
                     var so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
                     if (so is GameActionScriptableObject gas)
                     {
-                        // filter by domain if requested
                         string ns = gas.GetType().Namespace ?? string.Empty;
                         if (IsActionAllowedByDomain(ns, true) || IsActionAllowedByDomain(ns, false))
                             actions.Add(gas);
@@ -133,12 +129,11 @@ namespace XFlow.Shop.Editor
                 return;
             }
 
-            // ensure output folder exists
             if (!AssetDatabase.IsValidFolder(outputFolder))
             {
                 var parent = "Assets";
                 var parts = outputFolder.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 1; i < parts.Length; i++) // skip first 'Assets' if present
+                for (int i = 1; i < parts.Length; i++)
                 {
                     string folder = string.Join("/", parts, 0, i + 1);
                     if (!AssetDatabase.IsValidFolder(folder))
@@ -162,7 +157,6 @@ namespace XFlow.Shop.Editor
                 var costsList = new List<GameActionScriptableObject>();
                 var rewardsList = new List<GameActionScriptableObject>();
 
-                // build filtered pools for costs and rewards
                 var costPool = new List<GameActionScriptableObject>();
                 var rewardPool = new List<GameActionScriptableObject>();
                 foreach (var a in actions)
@@ -172,7 +166,6 @@ namespace XFlow.Shop.Editor
                     if (IsActionAllowedByDomain(ns, false)) rewardPool.Add(a);
                 }
 
-                // fallback to full actions if any pool is empty
                 if (costPool.Count == 0) costPool.AddRange(actions);
                 if (rewardPool.Count == 0) rewardPool.AddRange(actions);
 
@@ -244,7 +237,6 @@ namespace XFlow.Shop.Editor
 
         private bool IsActionAllowedByDomain(string @namespace, bool forCost)
         {
-            // simple namespace-based mapping: XFlow.Health.*, XFlow.Gold.*, XFlow.Location.*, XFlow.VIP.*
             if (string.IsNullOrEmpty(@namespace)) return false;
             @namespace = @namespace.ToLowerInvariant();
             if (forCost)

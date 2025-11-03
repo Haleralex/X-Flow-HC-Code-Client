@@ -10,7 +10,7 @@ namespace XFlow.Health
 
         public override bool CanApply()
         {
-            return true; // Can always add health
+            return true;
         }
 
         public override void Apply()

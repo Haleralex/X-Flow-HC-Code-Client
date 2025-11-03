@@ -10,18 +10,22 @@ namespace XFlow.Shop
         [SerializeField] private BundleCardView bundleCardPrefab;
         [SerializeField] private Transform bundleContainer;
         private readonly List<BundleCardView> _bundles = new();
+
         private void Start()
         {
             InitializeBundles();
         }
+
         void OnEnable()
         {
             PlayerData.Instance.OnAnyChanged += UpdateShopUI;
         }
+
         void OnDestroy()
         {
             PlayerData.Instance.OnAnyChanged -= UpdateShopUI;
         }
+
         private void UpdateShopUI()
         {
             foreach (var bundle in _bundles)
@@ -40,7 +44,13 @@ namespace XFlow.Shop
                 if (bundle == null) continue;
 
                 BundleCardView card = Instantiate(bundleCardPrefab, bundleContainer);
+                
+                card.gameObject.SetActive(false);
+                
                 card.Initialize(bundle, true);
+                
+                card.gameObject.SetActive(true);
+                
                 _bundles.Add(card);
             }
         }

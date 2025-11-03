@@ -1,8 +1,8 @@
 ﻿<Solution>
+  <Project Path="Shop.csproj" />
   <Project Path="VIP.csproj" />
   <Project Path="Health.csproj" />
-  <Project Path="Gold.csproj" />
-  <Project Path="Shop.csproj" />
   <Project Path="Location.csproj" />
+  <Project Path="Gold.csproj" />
   <Project Path="Core.csproj" />
 </Solution>

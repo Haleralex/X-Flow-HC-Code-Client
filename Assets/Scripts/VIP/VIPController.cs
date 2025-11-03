@@ -39,7 +39,7 @@ namespace XFlow.VIP
             {
                 resource.VIPDuration = TimeSpan.Zero;
             }
-            PlayerData.Instance.NotifyChange<VIPResource>();
+            PlayerData.Instance.Set(resource);
         }
 
         public void RemoveVIPTime(TimeSpan duration)

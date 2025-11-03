@@ -36,14 +36,14 @@ namespace XFlow.Gold
         {
             var resource = GetGoldResource();
             resource.CurrentGold = Mathf.Max(MIN_GOLD, resource.CurrentGold + amount);
-            PlayerData.Instance.NotifyChange<GoldResource>();
+            PlayerData.Instance.Set(resource);
         }
 
         public void RemoveGold(int amount)
         {
             var resource = GetGoldResource();
             resource.CurrentGold = Mathf.Max(MIN_GOLD, resource.CurrentGold - amount);
-            PlayerData.Instance.NotifyChange<GoldResource>();
+            PlayerData.Instance.Set(resource);
         }
 
         public bool HasGold(int amount)
