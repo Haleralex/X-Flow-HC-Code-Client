@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         UNITY_PATH = '/home/haler/Unity/Hub/Editor/6000.2.12f1/Editor/Unity'
-        PROJECT_PATH = "/UnityJenkins"
+        PROJECT_PATH = "${env.WORKSPACE}/UnityJenkins"
         BUILD_METHOD_WINDOWS = 'BuildScript.BuildWindows'
         KEYSTORE_PASS = 'unityjenkins'
         KEY_ALIAS_PASS = 'unityjenkins'
