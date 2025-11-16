@@ -66,6 +66,9 @@ pipeline {
             }
             steps {
                 sh '''
+                echo "WORKSPACE = $WORKSPACE"
+                echo "PROJECT_PATH = $PROJECT_PATH"
+                ls -la "$PROJECT_PATH"
                 echo "🔨 Starting Unity Windows build..."
                 echo "⚙️ DEVELOPMENT_BUILD=${DEVELOPMENT_BUILD}"
                 ${UNITY_PATH} -quit -batchmode -nographics -projectPath "${PROJECT_PATH}" -logfile 'unity_build_log_windows.txt' -executeMethod ${BUILD_METHOD_WINDOWS} -buildTarget win64
