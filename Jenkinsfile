@@ -13,7 +13,7 @@ pipeline {
     parameters {
         string(name: 'BRANCH', defaultValue: 'master', description: 'Git branch to build')
         choice(name: 'BUILD_TARGET', choices: ['Windows'], description: 'Build platforms')
-        booleanParam(name: 'CLEAN_BUILD', defaultValue: false, description: 'Clean build by deleting Library folder')
+        booleanParam(name: 'CLEAN_BUILD', defaultValue: true, description: 'Clean build by deleting Library folder')
         booleanParam(name: 'DEVELOPMENT_BUILD', defaultValue: false, description: 'Toggle Development Build, Autoconnect Profiler.')
         string(name: 'SCRIPTING_DEFINE_SYMBOLS', defaultValue: '', description: 'Scripting defines symbols separated by commas')
     }
